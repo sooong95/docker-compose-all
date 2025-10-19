@@ -174,7 +174,7 @@ services:
     image: sooong137/sj-gateway:1.1
     container_name: sj-gateway
     ports:
-      - "8080:8080"
+      - "80:8080"
     depends_on:
       - sj-eureka-server
 
