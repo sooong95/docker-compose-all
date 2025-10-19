@@ -21,15 +21,15 @@ services:
 #    depends_on:
 #      - prometheus
 
-  redis:
-    image: redis:7.2
-    container_name: redis
-    restart: always
-    ports:
-      - "6379:6379"
-    volumes:
-      - redis_data:/data
-    command: [ "redis-server", "--appendonly", "yes" ]
+#  redis:
+#    image: redis:7.2
+#    container_name: redis
+#    restart: always
+#    ports:
+#      - "6379:6379"
+#    volumes:
+#      - redis_data:/data
+#    command: [ "redis-server", "--appendonly", "yes" ]
 
   rabbitmq:
     image: rabbitmq:3-management   # 관리 UI 포함된 이미지
