@@ -1,36 +1,5 @@
 version: '3'
 services:
-#  prometheus:
-#    image: prom/prometheus:latest
-#    container_name: prometheus
-#    ports:
-#      - "9090:9090"
-#    volumes:
-#      - ./prometheus/prometheus.yml:/etc/prometheus/prometheus.yml
-#    command:
-#      - '--config.file=/etc/prometheus/prometheus.yml'
-#
-#  grafana:
-#    image: grafana/grafana:latest
-#    container_name: grafana
-#    ports:
-#      - "3000:3000"
-#    environment:
-#      - GF_SECURITY_ADMIN_USER=admin
-#      - GF_SECURITY_ADMIN_PASSWORD=admin
-#    depends_on:
-#      - prometheus
-
-#  redis:
-#    image: redis:7.2
-#    container_name: redis
-#    restart: always
-#    ports:
-#      - "6379:6379"
-#    volumes:
-#      - redis_data:/data
-#    command: [ "redis-server", "--appendonly", "yes" ]
-
   rabbitmq:
     image: rabbitmq:3-management   # 관리 UI 포함된 이미지
     container_name: rabbitmq
@@ -206,41 +175,41 @@ services:
       - sj-gateway
       - sj-config-server
 
-  sj-review-service-v1:
-    image: sooong137/sj-review-service:1.1
-    container_name: sj-review-service-v1
-    ports:
-      - "8084:8080"
-    depends_on:
-      - sj-gateway
-      - sj-config-server
-
-#  sj-review-service-v2:
-#    image: sooong137/sj-review-service:add-redis-2.2
-#    container_name: sj-review-service-add-redis-v2
+#  sj-review-service-v1:
+#    image: sooong137/sj-review-service:1.1
+#    container_name: sj-review-service-v1
 #    ports:
-#      - "8094:8080"
+#      - "8084:8080"
 #    depends_on:
 #      - sj-gateway
 #      - sj-config-server
 
-  sj-shop-service-v1:
-    image: sooong137/sj-shop-service:1.1
-    container_name: sj-shop-service-v1
+  sj-review-service-v2:
+    image: sooong137/sj-review-service:add-redis-2.2
+    container_name: sj-review-service-add-redis-v2
     ports:
-      - "8085:8080"
+      - "8094:8080"
     depends_on:
       - sj-gateway
       - sj-config-server
 
-#  sj-shop-service-v2:
-#    image: sooong137/sj-shop-service:add-redis-2.1
-#    container_name: sj-shop-service-add-redis-v2
+#  sj-shop-service-v1:
+#    image: sooong137/sj-shop-service:1.1
+#    container_name: sj-shop-service-v1
 #    ports:
-#      - "8095:8080"
+#      - "8085:8080"
 #    depends_on:
 #      - sj-gateway
 #      - sj-config-server
+
+  sj-shop-service-v2:
+    image: sooong137/sj-shop-service:add-redis-2.1
+    container_name: sj-shop-service-add-redis-v2
+    ports:
+      - "8095:8080"
+    depends_on:
+      - sj-gateway
+      - sj-config-server
 
 volumes:
   rabbitmq_data:
